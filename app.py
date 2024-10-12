@@ -31,3 +31,11 @@ def add_task():
 if __name__ == '__main__':
 	db.create_all() #Create tables in the database
 	app.run(debug=True, host='0.0.0.0')
+
+@app.route('/delete/<int:id>')
+def delete_task(id):
+	task = Task.query.get(id)
+	if task:
+		db.session.delete(task)
+		db.session.commit()
+	return redirect('/')
