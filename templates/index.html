@@ -13,7 +13,14 @@
     </form>
     <ul>
         {% for task in tasks %}
-            <li>{{ task.title }}</li>
+            <li>
+		{{ task.title }}
+		<form method="POST" action="/update/{{ task.id }}">
+			<input type="text" name="title" placeholder="Edit task" required>
+			<buttun type="submit">Edit</button>
+		</form>
+		<a href="/delete/{{ task.id }}">Remove</a>
+	    </li>
         {% endfor %}
     </ul>
 </body>
