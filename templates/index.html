@@ -8,22 +8,28 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #e9ecef;
-            color: #333;
+            background-color: #f8f9fa;
+            color: #343a40;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         h1 {
             text-align: center;
             color: #495057;
+            margin-bottom: 20px;
         }
         form {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
         }
         input[type="text"] {
             padding: 10px;
-            width: 300px;
+            flex: 1;
             border: 1px solid #ced4da;
             border-radius: 4px;
             margin-right: 10px;
@@ -43,6 +49,8 @@
         ul {
             list-style-type: none;
             padding: 0;
+            width: 100%;
+            max-width: 600px;
         }
         li {
             background: white;
@@ -52,7 +60,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        li:hover {
+            transform: scale(1.02);
         }
         .edit-form {
             display: flex;
@@ -60,19 +72,27 @@
         }
         .edit-form input {
             margin-right: 10px;
-            width: auto;
+            flex: 1;
         }
         .delete-button {
             background-color: #dc3545;
             border: none;
             color: white;
-            padding: 5px 10px;
+            padding: 10px 15px;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
         .delete-button:hover {
             background-color: #c82333;
+        }
+        @media (max-width: 600px) {
+            form, ul {
+                width: 100%;
+            }
+            input[type="text"], .edit-form input {
+                width: 100%;
+            }
         }
     </style>
 </head>
