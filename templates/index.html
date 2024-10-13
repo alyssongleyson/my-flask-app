@@ -4,6 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #495057;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .edit-form {
+            display: flex;
+            align-items: center;
+        }
+        .edit-form input {
+            margin-right: 10px;
+            width: auto;
+        }
+        .delete-button {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
     <h1>To-Do List</h1>
@@ -14,13 +85,17 @@
     <ul>
         {% for task in tasks %}
             <li>
-		{{ task.title }}
-		<form method="POST" action="/update/{{ task.id }}">
-			<input type="text" name="title" placeholder="Edit task" required>
-			<buttun type="submit">Edit</button>
-		</form>
-		<a href="/delete/{{ task.id }}">Remove</a>
-	    </li>
+                <span>{{ task.title }}</span>
+                <div class="edit-form">
+                    <form method="POST" action="/update/{{ task.id }}">
+                        <input type="text" name="title" placeholder="Edit task" required>
+                        <button type="submit">Edit</button>
+                    </form>
+                    <form method="POST" action="/delete/{{ task.id }}">
+                        <button type="submit" class="delete-button">Remove</button>
+                    </form>
+                </div>
+            </li>
         {% endfor %}
     </ul>
 </body>
